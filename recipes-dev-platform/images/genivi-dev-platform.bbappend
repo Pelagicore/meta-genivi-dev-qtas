@@ -2,4 +2,7 @@
 IMAGE_INSTALL_remove = "packagegroup-gdp-hmi"
 
 # Ship QtAS reference UI
-IMAGE_INSTALL_append = " neptune-ui qtmultimedia-qmlplugins"
+IMAGE_INSTALL_append = " \
+    neptune-ui \
+    gammaray \
+"
