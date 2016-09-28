@@ -1,0 +1,45 @@
+From 335f8f7cadadae992f0d05dc7a7a2b3ce4b72341 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Erik=20Bot=C3=B6?= <erik.boto@pelagicore.com>
+Date: Wed, 28 Sep 2016 09:53:27 +0200
+Subject: [PATCH 2/2] Make --sd useable without --debug
+
+---
+ main.cpp | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/main.cpp b/main.cpp
+index fbdb605..fe40509 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -25,11 +25,15 @@ int main(int argc, char *argv[])
+ 
+     view.setProperty("IVI-Surface-ID", AM_POC_SURFACE_ID);
+ 
++    QSize size(1365, 768);
++    bool useCustomSize = false;
++    if(app.arguments().contains("--sd")) {
++        useCustomSize = true;
++        size = QSize(1024, 768-68 /* bottom panel height */);
++    }
++
+     if(app.arguments().contains("--debug")) {
+         view.setSource(QUrl("main.qml"));
+-        QSize size(1365, 768);
+-        if(app.arguments().contains("--sd"))
+-            size = QSize(1024, 768-68 /* bottom panel height */);
+         view.rootObject()->setWidth(size.width());
+         view.rootObject()->setHeight(size.height());
+         view.resize(size);
+@@ -46,7 +50,8 @@ int main(int argc, char *argv[])
+         return 1;
+     }else {
+         view.setSource(QUrl("qrc:///main.qml"));
+-        QSize size = app.primaryScreen()->size();
++        if (!useCustomSize)
++            size = app.primaryScreen()->size();
+         view.rootObject()->setWidth(size.width());
+         view.rootObject()->setHeight(size.height());
+         view.showFullScreen();
+-- 
+2.7.4
+

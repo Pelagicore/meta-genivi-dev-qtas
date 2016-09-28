@@ -1,0 +1,39 @@
+From 987bdef11df7049d361cbb7fcfcc314d7451802c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Erik=20Bot=C3=B6?= <erik.boto@pelagicore.com>
+Date: Wed, 28 Sep 2016 09:52:31 +0200
+Subject: [PATCH 1/2] Enable app exit by clicking WindRiver logo
+
+---
+ main.cpp | 1 +
+ main.qml | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+diff --git a/main.cpp b/main.cpp
+index 529263a..fbdb605 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -52,5 +52,6 @@ int main(int argc, char *argv[])
+         view.showFullScreen();
+     }
+ 
++    QObject::connect(view.engine(), SIGNAL(quit()), &app, SLOT(quit()));
+     return app.exec();
+ }
+diff --git a/main.qml b/main.qml
+index 677cd03..4e2886e 100644
+--- a/main.qml
++++ b/main.qml
+@@ -37,6 +37,10 @@ Rectangle {
+             fillMode: Image.PreserveAspectFit
+             source: "images/windriver-logo.png"
+             anchors.verticalCenter: parent.verticalCenter
++            MouseArea {
++                anchors.fill: parent
++                onClicked: Qt.quit()
++            }
+         }
+         Text {
+             text: "GENIVI® Audio Manager Monitor"
+-- 
+2.7.4
+
