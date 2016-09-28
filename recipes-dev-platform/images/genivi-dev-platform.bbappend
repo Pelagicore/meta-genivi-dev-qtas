@@ -10,4 +10,5 @@ IMAGE_INSTALL_append = " \
     gstreamer1.0-plugins-bad-meta \
     gstreamer1.0-plugins-base-meta \
     gstreamer1.0-plugins-ugly-meta \
+    liberation-fonts \
 "
