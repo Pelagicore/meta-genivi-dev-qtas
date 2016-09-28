@@ -1,0 +1,14 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'org.genivi.audiomanagermonitor'
+icon:    'icon.png'
+code:    'start.sh'
+runtime: 'native'
+name:
+  en: 'AMM'
+  de: 'AMM'
+
+categories: [ 'media' ]
+
+built-in: yes
