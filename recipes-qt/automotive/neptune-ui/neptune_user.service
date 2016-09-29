@@ -6,6 +6,7 @@ After=systemd-user-sessions.service
 ExecStart=/usr/bin/appman -r -c /opt/am/config.yaml -c am-config.yaml --dbus none Main.qml -platform eglfs
 Restart=on-failure
 WorkingDirectory=/opt/neptune
+Environment=QT_IM_MODULE=qtvirtualkeyboard
 
 [Install]
 WantedBy=multi-user.target
