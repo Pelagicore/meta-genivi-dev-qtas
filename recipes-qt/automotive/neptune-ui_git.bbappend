@@ -3,12 +3,13 @@ RDEPENDS_${PN} += " \
     qtvirtualkeyboard-qmlplugins \
     qtmultimedia-qmlplugins \
     qtwebengine-qmlplugins \
-    qt3d-qmlplugins \
 "    
 
 SYSTEMD_AUTO_ENABLE = "disable"
 FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
 SRC_URI += "file://neptune_user.service"
+
+SRCREV = "36c8b839bb1da7decebaa2bc7deb0cca04e3f478"
 
 do_install_append() {
     install -Dm0644 ${WORKDIR}/neptune_user.service ${D}/etc/systemd/user/neptune.service
@@ -20,3 +21,6 @@ do_install_append() {
     touch ${D}/var/lib/systemd/linger/root
 }
 
+do_install_prepend() {
+    touch ${S}/MainWithCluster.qml
+}
