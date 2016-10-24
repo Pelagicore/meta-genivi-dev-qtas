@@ -1,0 +1,4 @@
+SRCREV_qtwebengine = "99a2a538eba5e3c351e3118b3c6f71458af91886"
+SRCREV_chromium = "c3ea0d3f308974090d4a4c0d46f1e9fbd57c1b67"
+
+QT_MODULE_BRANCH = "5.7.1"
