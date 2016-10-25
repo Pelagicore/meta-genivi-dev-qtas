@@ -3,7 +3,10 @@ RDEPENDS_${PN} += " \
     qtvirtualkeyboard-qmlplugins \
     qtmultimedia-qmlplugins \
     qtwebengine-qmlplugins \
+    qtquickcontrols2-qmlplugins \
 "    
+
+DEPENDS += "qttools-native"
 
 SYSTEMD_AUTO_ENABLE = "disable"
 FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
@@ -25,6 +28,11 @@ do_install_append() {
     if [ -e ${WORKDIR}/am-config.yaml ]; then
         install -m644 ${WORKDIR}/am-config.yaml ${D}/opt/neptune/am-config.yaml
     fi
+
+    # The i18ndemo app requires some extra steps to build translations
+    cd ${D}/opt/neptune/apps/com.theqtcompany.i18ndemo/translations/
+    ${S}/apps/com.theqtcompany.i18ndemo/translations/create_qm.sh --qtdir=${OE_QMAKE_PATH_EXTERNAL_HOST_BINS}
+    cd -
 }
 
 do_install_prepend() {
