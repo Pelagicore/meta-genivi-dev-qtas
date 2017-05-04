@@ -2,4 +2,4 @@
 # provides "geniviextras" for Qt which QtAM uses for DLT-logging
 DEPENDS += "qtivi"
 
-SRCREV = "05a6ca178d7d95128a2e0053d06db56a844e4696"
+SRCREV = "f472ef3662cf0a9bc2bf727c7cef18fd884df5a2"
